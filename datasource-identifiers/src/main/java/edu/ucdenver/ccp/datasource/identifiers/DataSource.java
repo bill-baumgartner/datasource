@@ -178,7 +178,7 @@ public enum DataSource {
 	MUTDB("http://mutdb.org/"),
 	NASONIABASE("http://hymenopteragenome.org/nasonia/"),
 	NATIONAL_DRUG_CODE_DIRECTORY("http://www.accessdata.fda.gov/scripts/cder/ndc/"),
-	NBO("http://rgd.mcw.edu/"),
+	NBO("http://phenomebrowser.net/ontofunc/nbo/"),
 	NCBI_TAXON("http://purl.obolibrary.org/obo/") {
 		@Override
 		public String getLocalName() {

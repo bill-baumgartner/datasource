@@ -65,6 +65,7 @@ import edu.ucdenver.ccp.datasource.fileparsers.mgi.MRKReferenceFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.mgi.MRKSequenceFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.mgi.MRKSwissProtFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.mirbase.MirBaseMiRnaDatFileParser;
+import edu.ucdenver.ccp.datasource.fileparsers.nbo.NboAnnotationFileRecordReader;
 import edu.ucdenver.ccp.datasource.fileparsers.ncbi.gene.EntrezGene2RefseqFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.ncbi.gene.EntrezGeneInfoFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.ncbi.gene.EntrezGeneMim2GeneFileParser;
@@ -264,6 +265,17 @@ public enum FileDataSource {
 		}
 	},
 
+	/**
+	 *
+	 */
+	MOUSE_NBO_ANNOTS(DataSource.NBO, IsTaxonAware.NO, RequiresManualDownload.NO) {
+		@Override
+		protected FileRecordReader<?> initFileRecordReader(File sourceFileDirectory, boolean cleanSourceFiles,
+				File idListDir, Set<NcbiTaxonomyID> taxonIds) throws IOException {
+			return new NboAnnotationFileRecordReader(sourceFileDirectory, cleanSourceFiles);
+		}
+	},
+	
 	/**
 	 *
 	 */
