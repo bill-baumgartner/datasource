@@ -92,6 +92,7 @@ import edu.ucdenver.ccp.datasource.fileparsers.rgd.RgdRatGeneMpAnnotationFileRec
 import edu.ucdenver.ccp.datasource.fileparsers.rgd.RgdRatGeneNboAnnotationFileRecordReader;
 import edu.ucdenver.ccp.datasource.fileparsers.rgd.RgdRatGenePwAnnotationFileRecordReader;
 import edu.ucdenver.ccp.datasource.fileparsers.rgd.RgdRatGeneRdoAnnotationFileRecordReader;
+import edu.ucdenver.ccp.datasource.fileparsers.suppl_info.Santos2016SupTableS2RecordReader;
 import edu.ucdenver.ccp.datasource.fileparsers.transfac.TransfacGeneDatFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.transfac.TransfacMatrixDatFileParser;
 import edu.ucdenver.ccp.datasource.fileparsers.vectorbase.VectorBaseFastaFileRecordReader_aael_transcripts;
@@ -149,6 +150,16 @@ public enum FileDataSource {
 	// }
 	// },
 
+	
+	
+	SANTOS_2016_S2(DataSource.SANTOS2016, IsTaxonAware.NO, RequiresManualDownload.NO) {
+		@Override
+		protected FileRecordReader<?> initFileRecordReader(File sourceFileDirectory, File baseSourceFileDirectory, boolean cleanSourceFiles,
+				boolean cleanIdListFiles, File idListDir, Set<NcbiTaxonomyID> taxonIds) throws IOException {
+			return new Santos2016SupTableS2RecordReader(sourceFileDirectory, CharacterEncoding.ISO_8859_1, cleanSourceFiles);
+		}
+	},
+	
 	/**
 	 * this data source represents genes as defined by the KEGG resource
 	 */
