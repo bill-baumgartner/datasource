@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import edu.ucdenver.ccp.common.download.HttpDownload;
 import edu.ucdenver.ccp.common.file.CharacterEncoding;
+import edu.ucdenver.ccp.common.file.reader.ExcelFileLineReader;
 import edu.ucdenver.ccp.common.file.reader.Line;
 import edu.ucdenver.ccp.datasource.fileparsers.ExcelFileRecordReader;
 
@@ -29,18 +30,14 @@ public class Santos2016SupTableS2RecordReader extends ExcelFileRecordReader<Sant
 	}
 
 	@Override
+	protected ExcelFileLineReader initializeLineReaderFromDownload(CharacterEncoding encoding, String skipLinePrefix)
+			throws IOException {
+		return new ExcelFileLineReader(xlsxFile, null);
+	}
+
+	@Override
 	protected Santos2016SupTableS2FileData parseRecordFromLine(Line line) {
 		return Santos2016SupTableS2FileData.parseSupTableS2Line(line);
 	}
 
-	public static void main(String[] args) {
-		try {
-			for (Santos2016SupTableS2RecordReader rr = new Santos2016SupTableS2RecordReader(new File(
-					"/Users/bill/Downloads/nrd.2016.230-s2.xlsx"), CharacterEncoding.ISO_8859_1); rr.hasNext();) {
-				Santos2016SupTableS2FileData record = rr.next();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }
